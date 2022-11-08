@@ -5,7 +5,6 @@ const CONNECTION_DISTANCE = 150;
 const NODE_COUNT = 50;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
-const CAMERA_POSITION = 700;
 let renderer: THREE.WebGLRenderer;
 let scene: THREE.Scene;
 let camera: THREE.PerspectiveCamera;
@@ -33,7 +32,7 @@ export function init() {
     0.1,
     2000
   );
-  camera.position.z = CAMERA_POSITION;
+  camera.position.z = 700;
   camera.position.y = -50;
   controls = new OrbitControls(camera, renderer.domElement);
   controls.maxDistance = 1000;
