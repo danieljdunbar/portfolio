@@ -5,12 +5,12 @@ const CONNECTION_DISTANCE = 150;
 const NODE_COUNT = 50;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
+const NODES: Node[] = [];
 let renderer: THREE.WebGLRenderer;
 let scene: THREE.Scene;
 let camera: THREE.PerspectiveCamera;
 let controls: OrbitControls;
 let group: THREE.Group;
-let nodes: Node[] = [];
 let linesMesh: THREE.LineSegments;
 let lineVertices = new Float32Array(SEGMENTS * 3);
 
@@ -86,7 +86,7 @@ function createNodes() {
     const object = new THREE.Mesh(geometry, material);
     object.position.set(x, y, z);
 
-    nodes.push({ object, velocity });
+    NODES.push({ object, velocity });
 
     group.add(object);
   }
@@ -101,8 +101,8 @@ function updateConnections() {
 
   for (let i = 0; i < NODE_COUNT; i++) {
     for (let j = i + 1; j < NODE_COUNT; j++) {
-      const nodeA = nodes[i];
-      const nodeB = nodes[j];
+      const nodeA = NODES[i];
+      const nodeB = NODES[j];
 
       dx = nodeA.object.position.x - nodeB.object.position.x;
       dy = nodeA.object.position.y - nodeB.object.position.y;
@@ -152,21 +152,21 @@ function createNodeCloud() {
 }
 
 function updatePositions() {
-  for (let i = 0; i < nodes.length; i++) {
-    let x = nodes[i].object.position.x + nodes[i].velocity.x;
-    let y = nodes[i].object.position.y + nodes[i].velocity.y;
-    let z = nodes[i].object.position.z + nodes[i].velocity.z;
+  for (let i = 0; i < NODES.length; i++) {
+    let x = NODES[i].object.position.x + NODES[i].velocity.x;
+    let y = NODES[i].object.position.y + NODES[i].velocity.y;
+    let z = NODES[i].object.position.z + NODES[i].velocity.z;
 
-    nodes[i].object.position.set(x, y, z);
+    NODES[i].object.position.set(x, y, z);
 
-    if (Math.abs(nodes[i].object.position.x) >= RADIUS / 2) {
-      nodes[i].velocity.x = -1 * nodes[i].velocity.x;
+    if (Math.abs(NODES[i].object.position.x) >= RADIUS / 2) {
+      NODES[i].velocity.x = -1 * NODES[i].velocity.x;
     }
-    if (Math.abs(nodes[i].object.position.y) >= RADIUS / 2) {
-      nodes[i].velocity.y = -1 * nodes[i].velocity.y;
+    if (Math.abs(NODES[i].object.position.y) >= RADIUS / 2) {
+      NODES[i].velocity.y = -1 * NODES[i].velocity.y;
     }
-    if (Math.abs(nodes[i].object.position.z) >= RADIUS / 2) {
-      nodes[i].velocity.z = -1 * nodes[i].velocity.z;
+    if (Math.abs(NODES[i].object.position.z) >= RADIUS / 2) {
+      NODES[i].velocity.z = -1 * NODES[i].velocity.z;
     }
   }
 }
