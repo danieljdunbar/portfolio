@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+const CONNECTION_DISTANCE = 150;
 const NODE_COUNT = 50;
+const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const CAMERA_POSITION = 700;
 let renderer: THREE.WebGLRenderer;
@@ -10,6 +12,8 @@ let camera: THREE.PerspectiveCamera;
 let controls: OrbitControls;
 let group: THREE.Group;
 let nodes: Node[] = [];
+let linesMesh: THREE.LineSegments;
+let lineVertices = new Float32Array(SEGMENTS * 3);
 
 interface Node {
   object: THREE.Mesh;
@@ -88,9 +92,63 @@ function createNodes() {
   }
 }
 
+function connectNodes() {
+  let numConnected = 0;
+  let vertexCoordinate = 0;
+  let dx;
+  let dy;
+  let dz;
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    for (let j = i + 1; j < NODE_COUNT; j++) {
+      const nodeA = nodes[i];
+      const nodeB = nodes[j];
+
+      dx = nodeA.object.position.x - nodeB.object.position.x;
+      dy = nodeA.object.position.y - nodeB.object.position.y;
+      dz = nodeA.object.position.z - nodeB.object.position.z;
+
+      const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+      if (dist <= CONNECTION_DISTANCE) {
+        lineVertices[vertexCoordinate++] = nodeA.object.position.x;
+        lineVertices[vertexCoordinate++] = nodeA.object.position.y;
+        lineVertices[vertexCoordinate++] = nodeA.object.position.z;
+
+        lineVertices[vertexCoordinate++] = nodeB.object.position.x;
+        lineVertices[vertexCoordinate++] = nodeB.object.position.y;
+        lineVertices[vertexCoordinate++] = nodeB.object.position.z;
+
+        numConnected++;
+      }
+    }
+  }
+
+  linesMesh.geometry.setDrawRange(0, numConnected * 2);
+  linesMesh.geometry.attributes.position.needsUpdate = true;
+}
+
+function createMesh() {
+  const geometry = new THREE.BufferGeometry();
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+
+  geometry.computeBoundingSphere();
+  geometry.setDrawRange(0, 0);
+  geometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(lineVertices, 3).setUsage(THREE.DynamicDrawUsage)
+  );
+
+  linesMesh = new THREE.LineSegments(geometry, material);
+  group.add(linesMesh);
+
+  connectNodes();
+}
+
 function createNodeCloud() {
   createBox();
   createNodes();
+  createMesh();
 }
 
 function onWindowResize() {
