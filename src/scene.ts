@@ -48,6 +48,7 @@ export function init() {
 }
 
 export function animate() {
+  moveNodes();
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
@@ -92,7 +93,7 @@ function createNodes() {
   }
 }
 
-function connectNodes() {
+function updateConnections() {
   let numConnected = 0;
   let vertexCoordinate = 0;
   let dx;
@@ -142,13 +143,38 @@ function createMesh() {
   linesMesh = new THREE.LineSegments(geometry, material);
   group.add(linesMesh);
 
-  connectNodes();
+  updateConnections();
 }
 
 function createNodeCloud() {
   createBox();
   createNodes();
   createMesh();
+}
+
+function updatePositions() {
+  for (let i = 0; i < nodes.length; i++) {
+    let x = nodes[i].object.position.x + nodes[i].velocity.x;
+    let y = nodes[i].object.position.y + nodes[i].velocity.y;
+    let z = nodes[i].object.position.z + nodes[i].velocity.z;
+
+    nodes[i].object.position.set(x, y, z);
+
+    if (Math.abs(nodes[i].object.position.x) >= RADIUS / 2) {
+      nodes[i].velocity.x = -1 * nodes[i].velocity.x;
+    }
+    if (Math.abs(nodes[i].object.position.y) >= RADIUS / 2) {
+      nodes[i].velocity.y = -1 * nodes[i].velocity.y;
+    }
+    if (Math.abs(nodes[i].object.position.z) >= RADIUS / 2) {
+      nodes[i].velocity.z = -1 * nodes[i].velocity.z;
+    }
+  }
+}
+
+function moveNodes() {
+  updatePositions();
+  updateConnections();
 }
 
 function onWindowResize() {
