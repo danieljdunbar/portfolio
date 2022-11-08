@@ -6,13 +6,13 @@ const NODE_COUNT = 50;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const NODES: Node[] = [];
+const LINE_VERTICES = new Float32Array(SEGMENTS * 3);
 let renderer: THREE.WebGLRenderer;
 let scene: THREE.Scene;
 let camera: THREE.PerspectiveCamera;
 let controls: OrbitControls;
 let group: THREE.Group;
 let linesMesh: THREE.LineSegments;
-let lineVertices = new Float32Array(SEGMENTS * 3);
 
 interface Node {
   object: THREE.Mesh;
@@ -111,13 +111,13 @@ function updateConnections() {
       const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
       if (dist <= CONNECTION_DISTANCE) {
-        lineVertices[vertexCoordinate++] = nodeA.object.position.x;
-        lineVertices[vertexCoordinate++] = nodeA.object.position.y;
-        lineVertices[vertexCoordinate++] = nodeA.object.position.z;
+        LINE_VERTICES[vertexCoordinate++] = nodeA.object.position.x;
+        LINE_VERTICES[vertexCoordinate++] = nodeA.object.position.y;
+        LINE_VERTICES[vertexCoordinate++] = nodeA.object.position.z;
 
-        lineVertices[vertexCoordinate++] = nodeB.object.position.x;
-        lineVertices[vertexCoordinate++] = nodeB.object.position.y;
-        lineVertices[vertexCoordinate++] = nodeB.object.position.z;
+        LINE_VERTICES[vertexCoordinate++] = nodeB.object.position.x;
+        LINE_VERTICES[vertexCoordinate++] = nodeB.object.position.y;
+        LINE_VERTICES[vertexCoordinate++] = nodeB.object.position.z;
 
         numConnected++;
       }
@@ -136,7 +136,7 @@ function createMesh() {
   geometry.setDrawRange(0, 0);
   geometry.setAttribute(
     'position',
-    new THREE.BufferAttribute(lineVertices, 3).setUsage(THREE.DynamicDrawUsage)
+    new THREE.BufferAttribute(LINE_VERTICES, 3).setUsage(THREE.DynamicDrawUsage)
   );
 
   linesMesh = new THREE.LineSegments(geometry, material);
