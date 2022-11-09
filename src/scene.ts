@@ -36,6 +36,7 @@ export function init() {
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
   labelRenderer.domElement.style.position = 'absolute';
   labelRenderer.domElement.style.top = '0px';
+  labelRenderer.domElement.style.left = '0px';
   labelRenderer.domElement.style.pointerEvents = 'none';
   document.getElementById('bg')!.appendChild(labelRenderer.domElement);
 
@@ -45,8 +46,8 @@ export function init() {
     0.1,
     2000
   );
-  camera.position.z = 700;
-  camera.position.y = -50;
+  camera.position.z = 800;
+  camera.position.y = -100;
   controls = new OrbitControls(camera, renderer.domElement);
   controls.maxDistance = 1000;
 
@@ -108,7 +109,6 @@ function createNodes() {
     const label = new CSS2DObject(labelDiv);
     label.position.copy(object.position);
     object.add(label);
-    label.layers.set(0);
 
     NODES.push({ object, velocity, label });
 

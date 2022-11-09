@@ -6,7 +6,6 @@ export const BIO_INFO = [
   'Road trips',
   'Pets',
   'Hobbies',
-  'Travel',
   'Seattle',
   'Youth',
   'Pizza',
