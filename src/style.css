@@ -4,6 +4,13 @@ canvas {
   left: 0;
 }
 
+.label {
+  color: #fff;
+  font-family: sans-serif;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
 main {
   position: absolute;
   bottom: 0;

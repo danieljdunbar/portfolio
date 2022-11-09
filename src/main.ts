@@ -3,7 +3,7 @@ import { init, animate } from './scene';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-    <canvas id="bg"></canvas>
+    <div id="bg"></div>
     <main>
       <div class="chat-container">
         <div class="chat-history">History</div>

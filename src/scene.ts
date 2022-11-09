@@ -1,8 +1,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import {
+  CSS2DRenderer,
+  CSS2DObject,
+} from 'three/examples/jsm/renderers/CSS2DRenderer.js';
+import { BIO_INFO } from './info';
 
 const CONNECTION_DISTANCE = 150;
-const NODE_COUNT = 50;
+const NODE_COUNT = BIO_INFO.length;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const NODES: Node[] = [];
@@ -11,20 +16,28 @@ let renderer: THREE.WebGLRenderer;
 let scene: THREE.Scene;
 let camera: THREE.PerspectiveCamera;
 let controls: OrbitControls;
+let labelRenderer: CSS2DRenderer;
 let group: THREE.Group;
 let linesMesh: THREE.LineSegments;
 
 interface Node {
   object: THREE.Mesh;
   velocity: THREE.Vector3;
+  label: CSS2DObject;
 }
 
 export function init() {
-  renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#bg')!,
-  });
+  renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById('bg')!.appendChild(renderer.domElement);
+
+  labelRenderer = new CSS2DRenderer();
+  labelRenderer.setSize(window.innerWidth, window.innerHeight);
+  labelRenderer.domElement.style.position = 'absolute';
+  labelRenderer.domElement.style.top = '0px';
+  labelRenderer.domElement.style.pointerEvents = 'none';
+  document.getElementById('bg')!.appendChild(labelRenderer.domElement);
 
   camera = new THREE.PerspectiveCamera(
     75,
@@ -50,6 +63,7 @@ export function animate() {
   moveNodes();
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  labelRenderer.render(scene, camera);
 }
 
 function createBox() {
@@ -86,9 +100,20 @@ function createNodes() {
     const object = new THREE.Mesh(geometry, material);
     object.position.set(x, y, z);
 
-    NODES.push({ object, velocity });
+    // Attach label
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'label';
+    labelDiv.textContent = BIO_INFO[i];
+    labelDiv.style.marginTop = '-1em';
+    const label = new CSS2DObject(labelDiv);
+    label.position.copy(object.position);
+    object.add(label);
+    label.layers.set(0);
+
+    NODES.push({ object, velocity, label });
 
     group.add(object);
+    group.add(label);
   }
 }
 
@@ -158,6 +183,7 @@ function updatePositions() {
     let z = NODES[i].object.position.z + NODES[i].velocity.z;
 
     NODES[i].object.position.set(x, y, z);
+    NODES[i].label.position.set(x, y, z);
 
     if (Math.abs(NODES[i].object.position.x) >= RADIUS / 2) {
       NODES[i].velocity.x = -1 * NODES[i].velocity.x;
@@ -181,4 +207,5 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
+  labelRenderer.setSize(window.innerWidth, window.innerHeight);
 }
