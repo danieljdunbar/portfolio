@@ -23,6 +23,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  padding-bottom: 24px;
   width: 100%;
 }
 
@@ -31,5 +32,23 @@ main {
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  margin: 0px 8px 24px;
+  margin: 0px 8px 0px;
+}
+
+.resume {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  font-size: 24px;
+  color: #fff;
+  background-color: hsl(213, 90%, 70%);
+  border-radius: 5px;
+  border: 0;
+  margin-bottom: 16px;
+}
+
+.resume:hover {
+  background-color: #fff;
+  color: hsl(213, 90%, 70%);
 }

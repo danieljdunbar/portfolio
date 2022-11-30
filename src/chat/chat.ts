@@ -10,6 +10,7 @@ interface Message {
 export class Chat {
   history: Message[] = [];
   historyHtml = '';
+  hideResumeButton = true;
 
   constructor(private nodeCloud: NodeCloud) {}
 
@@ -20,8 +21,25 @@ export class Chat {
     this.updateHistory(newMessage);
 
     if (BIO_INFO.includes(text)) {
+      this.hideChat();
       this.nodeCloud.focusNode(text);
     }
+  }
+
+  private hideChat() {
+    document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
+      'none';
+    document.querySelector<HTMLButtonElement>('.resume')!.style.display =
+      'block';
+  }
+
+  showChat() {
+    this.nodeCloud.resume();
+
+    document.querySelector<HTMLButtonElement>('.resume')!.style.display =
+      'none';
+    document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
+      'flex';
   }
 
   private updateHistory(message: Message) {

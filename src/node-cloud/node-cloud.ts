@@ -19,6 +19,7 @@ const NODE_COUNT = BIO_INFO.length;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const LINE_VERTICES = new Float32Array(SEGMENTS * 3);
+const INITIAL_CAMERA_POSITION = { x: 0, y: -100, z: 800 };
 
 export class NodeCloud {
   renderer: THREE.WebGLRenderer;
@@ -72,8 +73,8 @@ export class NodeCloud {
     this.labelRenderer.domElement.style.pointerEvents = 'none';
     document.getElementById('bg')!.appendChild(this.labelRenderer.domElement);
 
-    this.camera.position.z = 800;
-    this.camera.position.y = -100;
+    this.camera.position.z = INITIAL_CAMERA_POSITION.z;
+    this.camera.position.y = INITIAL_CAMERA_POSITION.y;
     this.controls.maxDistance = 1000;
 
     this.scene.add(this.group);
@@ -246,5 +247,28 @@ export class NodeCloud {
           .start();
       })
       .start();
+  }
+
+  resume() {
+    if (this.paused) {
+      new TWEEN.Tween(this.controls.target)
+        .to({ x: 0, y: 0, z: 0 }, 1000)
+        .easing(TWEEN.Easing.Quadratic.InOut) // Use an easing function to make the animation smooth.
+        .onUpdate(() => {
+          this.controls.update();
+        })
+        .onComplete(() => {
+          new TWEEN.Tween(this.camera.position)
+            .to(INITIAL_CAMERA_POSITION, 2000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(() => {
+              this.camera.lookAt(0, 0, 0);
+            })
+            .start();
+        })
+        .start();
+
+      this.paused = false;
+    }
   }
 }

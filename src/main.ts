@@ -6,6 +6,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <div id="bg"></div>
     <main>
+      <button class="resume">Resume</button>
       <div class="chat-container">
         <div class="chat-history"></div>
         <input class="chat-input" placeholder="Enter message"></input>
@@ -24,6 +25,9 @@ userInput.addEventListener('keydown', (event) => {
     userInput.value = '';
   }
 });
+
+const resumeButton = document.querySelector<HTMLButtonElement>('.resume')!;
+resumeButton.addEventListener('click', () => chat.showChat());
 
 function animate() {
   nodeCloud.moveNodes();
