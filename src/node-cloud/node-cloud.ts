@@ -4,6 +4,8 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
+import * as TWEEN from '@tweenjs/tween.js';
+
 import { BIO_INFO } from '../info';
 
 interface Node {
@@ -27,6 +29,7 @@ export class NodeCloud {
   group: THREE.Group;
   linesMesh: THREE.LineSegments;
   nodes: Node[];
+  paused = false;
 
   constructor() {
     this.renderer = new THREE.WebGLRenderer();
@@ -147,13 +150,16 @@ export class NodeCloud {
   }
 
   render() {
+    TWEEN.update();
     this.renderer.render(this.scene, this.camera);
     this.labelRenderer.render(this.scene, this.camera);
   }
 
   moveNodes() {
-    this.updatePositions();
-    this.updateConnections();
+    if (!this.paused) {
+      this.updatePositions();
+      this.updateConnections();
+    }
   }
 
   private updatePositions() {
@@ -211,5 +217,34 @@ export class NodeCloud {
 
     this.linesMesh.geometry.setDrawRange(0, numConnected * 2);
     this.linesMesh.geometry.attributes.position.needsUpdate = true;
+  }
+
+  focusNode(text: string) {
+    this.paused = true;
+    this.controls.saveState();
+
+    const nodeIndex = BIO_INFO.indexOf(text);
+    const node = this.nodes[nodeIndex];
+    const nodePosition = node.object.position;
+
+    new TWEEN.Tween(this.controls.target)
+      .to(nodePosition, 1000)
+      .easing(TWEEN.Easing.Quadratic.InOut) // Use an easing function to make the animation smooth.
+      .onUpdate(() => {
+        this.controls.update();
+      })
+      .onComplete(() => {
+        new TWEEN.Tween(this.camera.position)
+          .to(
+            { x: nodePosition.x, y: nodePosition.y, z: nodePosition.z - 100 },
+            2000
+          )
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(() => {
+            this.camera.lookAt(nodePosition);
+          })
+          .start();
+      })
+      .start();
   }
 }

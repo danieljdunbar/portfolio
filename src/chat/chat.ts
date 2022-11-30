@@ -1,4 +1,6 @@
 import './chat.css';
+import { NodeCloud } from '../node-cloud';
+import { BIO_INFO } from '../info';
 
 interface Message {
   user: boolean;
@@ -9,11 +11,17 @@ export class Chat {
   history: Message[] = [];
   historyHtml = '';
 
+  constructor(private nodeCloud: NodeCloud) {}
+
   newUserMessage(text: string) {
     const newMessage: Message = { user: true, text };
 
     this.history.push(newMessage);
     this.updateHistory(newMessage);
+
+    if (BIO_INFO.includes(text)) {
+      this.nodeCloud.focusNode(text);
+    }
   }
 
   private updateHistory(message: Message) {

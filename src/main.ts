@@ -15,7 +15,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `;
 
 const nodeCloud = new NodeCloud();
-const chat = new Chat();
+const chat = new Chat(nodeCloud);
 
 const userInput = document.querySelector<HTMLInputElement>('.chat-input')!;
 userInput.addEventListener('keydown', (event) => {
