@@ -1,6 +1,6 @@
 import './style.css';
-import { init, animate } from './scene';
 import { Chat } from './chat';
+import { NodeCloud } from './node-cloud';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -14,6 +14,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `;
 
+const nodeCloud = new NodeCloud();
 const chat = new Chat();
 
 const userInput = document.querySelector<HTMLInputElement>('.chat-input')!;
@@ -24,5 +25,10 @@ userInput.addEventListener('keydown', (event) => {
   }
 });
 
-init();
+function animate() {
+  nodeCloud.moveNodes();
+  requestAnimationFrame(animate);
+  nodeCloud.render();
+}
+
 animate();
