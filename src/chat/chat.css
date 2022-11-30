@@ -1,0 +1,42 @@
+.chat-history {
+  background-color: #2b3039;
+  color: #e8f1f2;
+  margin-bottom: 24px;
+  height: 150px;
+  padding: 16px;
+  border-radius: 5px;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px hsl(213, 90%, 70%);
+}
+
+.chat-input {
+  background-color: #2b3039;
+  color: #e8f1f2;
+  padding: 16px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.user-message {
+  display: inline;
+  color: hsl(213, 90%, 70%);
+}
+
+.message-text {
+  margin-left: 16px;
+}

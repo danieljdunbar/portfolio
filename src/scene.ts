@@ -53,6 +53,7 @@ export function init() {
 
   group = new THREE.Group();
   scene = new THREE.Scene();
+  //   scene.background = new THREE.Color(0x13293d);
   scene.add(group);
 
   createNodeCloud();

@@ -33,15 +33,3 @@ main {
   max-width: 500px;
   margin: 0px 8px 48px;
 }
-
-.chat-history {
-  background-color: aliceblue;
-  margin-bottom: 24px;
-  max-height: 150px;
-  padding: 8px;
-}
-
-.chat-input {
-  background-color: aliceblue;
-  padding: 8px;
-}
