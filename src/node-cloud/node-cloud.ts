@@ -129,7 +129,7 @@ export class NodeCloud {
       // Attach label
       const labelDiv = document.createElement('div');
       labelDiv.className = 'label';
-      labelDiv.textContent = BIO_INFO[i];
+      labelDiv.textContent = BIO_INFO[i].label;
       labelDiv.style.marginTop = '-1em';
       const label = new CSS2DObject(labelDiv);
       label.position.copy(object.position);
@@ -224,23 +224,23 @@ export class NodeCloud {
     this.paused = true;
     this.controls.saveState();
 
-    const nodeIndex = BIO_INFO.indexOf(text);
+    const nodeIndex = BIO_INFO.findIndex(
+      (info) => info.label.toLowerCase() === text.toLowerCase()
+    );
     const node = this.nodes[nodeIndex];
     const nodePosition = node.object.position;
 
     new TWEEN.Tween(this.controls.target)
       .to(nodePosition, 1000)
-      .easing(TWEEN.Easing.Quadratic.InOut) // Use an easing function to make the animation smooth.
       .onUpdate(() => {
         this.controls.update();
       })
       .onComplete(() => {
         new TWEEN.Tween(this.camera.position)
           .to(
-            { x: nodePosition.x, y: nodePosition.y, z: nodePosition.z - 100 },
+            { x: nodePosition.x, y: nodePosition.y, z: nodePosition.z + 100 },
             2000
           )
-          .easing(TWEEN.Easing.Quadratic.InOut)
           .onUpdate(() => {
             this.camera.lookAt(nodePosition);
           })

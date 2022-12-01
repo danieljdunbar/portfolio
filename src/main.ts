@@ -7,7 +7,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div id="bg"></div>
     <main>
       <div class="info-container">
-        <div class="node-info">Node info</div>
+        <div class="node-info">
+          <div class="info-title"></div>
+          <div class="info-details"></div>
+        </div>
         <button class="resume">Resume</button>
       </div>
       <div class="chat-container">

@@ -1,6 +1,6 @@
 import './chat.css';
 import { NodeCloud } from '../node-cloud';
-import { BIO_INFO } from '../info';
+import { BIO_INFO, Info } from '../info';
 
 interface Message {
   user: boolean;
@@ -20,10 +20,21 @@ export class Chat {
     this.history.push(newMessage);
     this.updateHistory(newMessage);
 
-    if (BIO_INFO.includes(text)) {
-      this.hideChat();
-      this.nodeCloud.focusNode(text);
+    for (const info of BIO_INFO) {
+      if (info.label.toLowerCase() === text.toLowerCase()) {
+        this.hideChat();
+        this.nodeCloud.focusNode(text);
+        this.addInfo(info);
+        break;
+      }
     }
+  }
+
+  private addInfo(info: Info) {
+    document.querySelector<HTMLDivElement>('.info-title')!.innerHTML =
+      info.label;
+    document.querySelector<HTMLDivElement>('.info-details')!.innerHTML =
+      info.detailsHtml;
   }
 
   private hideChat() {

@@ -48,15 +48,14 @@ main {
 .resume {
   padding: 16px;
   font-size: 24px;
-  color: hsl(213, 90%, 70%);
-  background-color: rgba(43, 48, 57, 0.7);
+  color: white;
+  background-color: #2b3039;
   border-radius: 5px;
   border: 0px;
   margin-bottom: 16px;
 }
 
 .resume:hover {
-  color: #2b3039;
   background-color: hsl(213, 90%, 70%);
 }
 
@@ -69,4 +68,9 @@ main {
   padding: 16px;
   height: 500px;
   margin-bottom: 24px;
+}
+
+.info-title {
+  font-size: xx-large;
+  margin-bottom: 16px;
 }
