@@ -6,7 +6,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <div id="bg"></div>
     <main>
-      <button class="resume">Resume</button>
+      <div class="info-container">
+        <div class="node-info">Node info</div>
+        <button class="resume">Resume</button>
+      </div>
       <div class="chat-container">
         <div class="chat-history"></div>
         <input class="chat-input" placeholder="Enter message"></input>

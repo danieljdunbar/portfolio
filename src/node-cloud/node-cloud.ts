@@ -100,7 +100,7 @@ export class NodeCloud {
       transparent: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
-    const helper = new THREE.BoxHelper(mesh);
+    const helper = new THREE.BoxHelper(mesh, 0xffffff);
 
     this.group.add(helper);
   }

@@ -29,15 +29,17 @@ export class Chat {
   private hideChat() {
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'none';
-    document.querySelector<HTMLButtonElement>('.resume')!.style.display =
-      'block';
+    document.querySelector<HTMLButtonElement>(
+      '.info-container'
+    )!.style.display = 'flex';
   }
 
   showChat() {
     this.nodeCloud.resume();
 
-    document.querySelector<HTMLButtonElement>('.resume')!.style.display =
-      'none';
+    document.querySelector<HTMLButtonElement>(
+      '.info-container'
+    )!.style.display = 'none';
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'flex';
   }
