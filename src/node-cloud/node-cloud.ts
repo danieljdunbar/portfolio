@@ -220,7 +220,7 @@ export class NodeCloud {
     this.linesMesh.geometry.attributes.position.needsUpdate = true;
   }
 
-  focusNode(text: string) {
+  focusNode(text: string, completeCallback: () => void) {
     this.paused = true;
     this.controls.saveState();
 
@@ -244,6 +244,7 @@ export class NodeCloud {
           .onUpdate(() => {
             this.camera.lookAt(nodePosition);
           })
+          .onComplete(completeCallback)
           .start();
       })
       .start();

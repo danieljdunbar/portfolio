@@ -23,14 +23,16 @@ export class Chat {
     for (const info of BIO_INFO) {
       if (info.label.toLowerCase() === text.toLowerCase()) {
         this.hideChat();
-        this.nodeCloud.focusNode(text);
-        this.addInfo(info);
+        this.nodeCloud.focusNode(text, () => this.showInfo(info));
         break;
       }
     }
   }
 
-  private addInfo(info: Info) {
+  private showInfo(info: Info) {
+    document.querySelector<HTMLButtonElement>(
+      '.info-container'
+    )!.style.display = 'flex';
     document.querySelector<HTMLDivElement>('.info-title')!.innerHTML =
       info.label;
     document.querySelector<HTMLDivElement>('.info-details')!.innerHTML =
@@ -40,9 +42,6 @@ export class Chat {
   private hideChat() {
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'none';
-    document.querySelector<HTMLButtonElement>(
-      '.info-container'
-    )!.style.display = 'flex';
   }
 
   showChat() {
