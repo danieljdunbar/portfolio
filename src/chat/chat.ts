@@ -1,6 +1,7 @@
 import './chat.css';
 import { NodeCloud } from '../node-cloud';
 import { BIO_INFO, Info } from '../info';
+import { getAiResponse } from './getAiResponse';
 
 interface Message {
   user: boolean;
@@ -86,6 +87,7 @@ export class Chat {
   }
 
   async newUserMessage(text: string) {
+    let isInfoMessage = false;
     const newMessage: Message = { user: true, text };
 
     this.history.push(newMessage);
@@ -99,8 +101,14 @@ export class Chat {
 
         this.hideChat();
         this.nodeCloud.focusNode(text, () => this.showInfo(info));
+        isInfoMessage = true;
         break;
       }
+    }
+
+    if (!isInfoMessage) {
+      const aiResponse = await getAiResponse(text);
+      this.newJaneMessage(aiResponse);
     }
   }
 
