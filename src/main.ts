@@ -15,7 +15,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <div class="chat-container">
         <div class="chat-history"></div>
-        <input class="chat-input" placeholder="Enter message"></input>
+        <input type="text" class="chat-input" placeholder="Enter message"></input>
       </div>
     </main>
   </div>
