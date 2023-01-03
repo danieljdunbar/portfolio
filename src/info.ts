@@ -25,7 +25,7 @@ export const BIO_INFO: Info[] = [
                 <li>Frontend development for Google Domains using Angular/Typescript and Java.</li>
                 <li>Frontend/Backend development for Ads (Display and Video 360) using Angular/Dart and Java.</li>
                 <li>Leading development of complex features for millions of daily users from design to launch.</li>
-                <li>Collaborating and fostering communication across multiple teams for projects I have driven.</li>
+                <li>Collaborating and fostering communication across multiple teams for projects he has driven.</li>
                 <li>Mentoring interns and volunteering in programs to help new grad hires.</li>
             </ul>
         </div>
@@ -45,7 +45,7 @@ export const BIO_INFO: Info[] = [
             <div>Graduated 2015</div>
         </div>
         <div>
-            I have also been taking Udacity's Deep Learning program to because I find AI fascinating and want to 
+            He has also been taking Udacity's Deep Learning program to because he finds AI fascinating and wants to 
             learn more about the field
         </div>
     `,
@@ -54,7 +54,7 @@ export const BIO_INFO: Info[] = [
     label: 'Skills',
     detailsHtml: `
       <div>
-        I can write hella code. Specifically I have notable experience with the following technologies:
+        He can write hella code. Specifically he have notable experience with the following technologies:
 
         <table>
           <tr>
@@ -79,55 +79,55 @@ export const BIO_INFO: Info[] = [
           </tr>
         </table>
 
-        In addition to what I have listed I have become more familiar with Python and machine learning thanks to
-        the deep learning class I have been following. Also I just love learning about new tech and trying them out. 
+        In addition to what I have listed he has become more familiar with Python and machine learning thanks to
+        the deep learning class he's taking following. Also in general he just seems to love learning about new tech and trying them out. 
       </div>
     `,
   },
-  { label: 'Links', detailsHtml: `Github, LinkedIn, Instagram` },
   {
     label: 'Road trips',
     detailsHtml: `
         <p>
-            My dad loved road trips so growing up we took a lot of them. As young children though my siblings and I 
-            initially hated being in our family van for such long periods of time but because humanity's greatest strength 
-            is the ability to adapt to our environments we eventually got used to it and even grew to love road trips.
+            His dad loved road trips so growing up his family took a lot of them. As young children though he and his siblings  
+            initially hated being in their family van for such long periods of time but because humanity's greatest strength 
+            is the ability to adapt to their environments they eventually got used to it and even grew to love road trips.
         </p>
         <p>
-            The biggest trip we ever did was kind of a tour of the United States when I was 12. We started in my hometown 
-            (Sierra Vista, AZ) and drove through the south on I-10 to visit my grandmother in South Carolina. After spending 
-            a week at her place we then drove back through the midwest this time. In total the trip took a month to do.
+            The biggest trip they ever did was kind of a tour of the United States when Daniel was 12. His family started in his hometown 
+            (Sierra Vista, AZ) and drove through the south on I-10 to visit his grandmother in South Carolina. After spending 
+            a week at her place they then drove back through the midwest. In total the trip took a month to do.
         </p>
         <p>
-            I personally have driven between Seattle, WA and Tucson, AZ over 10 times. When I moved to NYC in July I 
-            chose to drive just me and my dog from Seattle. It was so fun, we had a blast.
+            Daniel personally has driven between Seattle, WA and Tucson, AZ over 10 times. When he moved to NYC in July he 
+            chose to drive from Seattle with just his dog. It was so fun, they had a blast.
         </p>
     `,
   },
-  { label: 'Dog', detailsHtml: `I have a dog. Here is a picture of him:` },
-  { label: 'Seattle', detailsHtml: `I lived here` },
-  { label: 'Youth', detailsHtml: `I was young once. Have some proof: ` },
-  { label: 'Pizza', detailsHtml: `Love em` },
+  { label: 'Dog', detailsHtml: `Daniel has a dog. Here is a picture of him:` },
+  { label: 'Seattle', detailsHtml: `He lived there` },
+  { label: 'Youth', detailsHtml: `He was young once. Have some proof: ` },
+  { label: 'Pizza', detailsHtml: `The man goes feral for it` },
   {
     label: 'Books',
     detailsHtml: `
         Big sci-fi fan. Especially older sci-fi: Speaker for the Dead, Stranger in a strange land, Dune.
-        Recently though I have been trying to broaden my choice in books. I read Three Day Road and oh boy I cried.
+        Recently though Daniel has been trying to broaden his choice in books. He read Three Day Road and oh boy he cried.
     `,
   },
-  { label: 'Cooking', detailsHtml: `I suck at cooking.` },
+  { label: 'Cooking', detailsHtml: `The guy sucks at cooking.` },
   {
     label: 'Spelling bee',
     detailsHtml: `
-        I won my fifth grade class spelling bee. That's all. Just always looking for a venue to brag about it.
+        He won his fifth grade class spelling bee. That's all. He was really insistent on me sharing that.
     `,
   },
   {
     label: 'Piano',
     detailsHtml: `
-        I took lessons for a couple of years when I was 8 but then didn't pick it back up until I was 16. Couldn't 
-        recall anything I was taught except for how to barely read sheet music but it was very very fun so I 
-        kept fiddling with it.
+        Daniel took lessons for a couple of years when he was 8 but then didn't pick it back up until he was 16. Couldn't 
+        recall anything he was taught except for how to barely read sheet music but it was very very fun so he 
+        kept fiddling with it and likes writing music as a hobby.
     `,
   },
+  { label: 'Contact', detailsHtml: `Github, LinkedIn, Instagram` },
 ];
