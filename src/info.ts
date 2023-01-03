@@ -50,8 +50,41 @@ export const BIO_INFO: Info[] = [
         </div>
     `,
   },
-  { label: 'Skills', detailsHtml: `I can write hella code.` },
-  { label: 'Projects', detailsHtml: `This thing` },
+  {
+    label: 'Skills',
+    detailsHtml: `
+      <div>
+        I can write hella code. Specifically I have notable experience with the following technologies:
+
+        <table>
+          <tr>
+            <td>Typescript/Javascript</td>
+            <td>React</td>
+          </tr>
+          <tr>
+            <td>ReactNative</td>
+            <td>Angular</td>
+          </tr>
+          <tr>
+            <td>Node.js</td>
+            <td>HTML/CSS</td>
+          </tr>
+          <tr>
+            <td>Java</td>
+            <td>Three.js</td>
+          </tr>
+          <tr>
+            <td>Git/Github</td>
+            <td>Google cloud/Azure</td>
+          </tr>
+        </table>
+
+        In addition to what I have listed I have become more familiar with Python and machine learning thanks to
+        the deep learning class I have been following. Also I just love learning about new tech and trying them out. 
+      </div>
+    `,
+  },
+  { label: 'Links', detailsHtml: `Github, LinkedIn, Instagram` },
   {
     label: 'Road trips',
     detailsHtml: `
@@ -73,7 +106,7 @@ export const BIO_INFO: Info[] = [
   },
   { label: 'Dog', detailsHtml: `I have a dog. Here is a picture of him:` },
   { label: 'Seattle', detailsHtml: `I lived here` },
-  { label: 'Youth', detailsHtml: `I was young once. ` },
+  { label: 'Youth', detailsHtml: `I was young once. Have some proof: ` },
   { label: 'Pizza', detailsHtml: `Love em` },
   {
     label: 'Books',
@@ -86,7 +119,7 @@ export const BIO_INFO: Info[] = [
   {
     label: 'Spelling bee',
     detailsHtml: `
-        I won my fifth grade class spelling bee. That's it.
+        I won my fifth grade class spelling bee. That's all. Just always looking for a venue to brag about it.
     `,
   },
   {

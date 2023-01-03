@@ -37,6 +37,11 @@ input:focus {
   color: hsl(213, 90%, 70%);
 }
 
+.ai-message {
+  display: inline;
+  color: rgb(37, 224, 144);
+}
+
 .message-text {
   margin-left: 16px;
 }

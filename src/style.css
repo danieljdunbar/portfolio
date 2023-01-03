@@ -78,3 +78,7 @@ main {
 .degree {
   margin-bottom: 24px;
 }
+
+table {
+  margin: 16px 0px;
+}

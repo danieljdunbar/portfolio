@@ -19,7 +19,7 @@ const NODE_COUNT = BIO_INFO.length;
 const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const LINE_VERTICES = new Float32Array(SEGMENTS * 3);
-const INITIAL_CAMERA_POSITION = { x: 0, y: -100, z: 800 };
+const INITIAL_CAMERA_POSITION = { x: 0, y: 0, z: 800 };
 
 export class NodeCloud {
   renderer: THREE.WebGLRenderer;
@@ -254,7 +254,7 @@ export class NodeCloud {
     if (this.paused) {
       new TWEEN.Tween(this.controls.target)
         .to({ x: 0, y: 0, z: 0 }, 1000)
-        .easing(TWEEN.Easing.Quadratic.InOut) // Use an easing function to make the animation smooth.
+        .easing(TWEEN.Easing.Quadratic.InOut)
         .onUpdate(() => {
           this.controls.update();
         })

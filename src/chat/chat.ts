@@ -11,17 +11,80 @@ export class Chat {
   history: Message[] = [];
   historyHtml = '';
   hideResumeButton = true;
+  janeTalking = false;
 
-  constructor(private nodeCloud: NodeCloud) {}
+  constructor(private nodeCloud: NodeCloud) {
+    this.janeIntro();
+  }
 
-  newUserMessage(text: string) {
+  private async janeIntro() {
+    this.toggleJaneTalking();
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    this.newJaneMessage('Hello!', true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    this.newJaneMessage(
+      'I am an AI named Jane here to help you learn about Daniel',
+      true
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    this.newJaneMessage(
+      "You can of course chat with me or you can type in one of the subjects floating around in his information cloud and I'll show you what I know about him",
+      true
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    this.newJaneMessage(
+      'Try typing work, education, skills, or my personal favorite dog',
+      true
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    this.toggleJaneTalking();
+  }
+
+  private toggleJaneTalking() {
+    const chatInput = document.querySelector<HTMLDivElement>('.chat-input')!;
+    this.janeTalking = !this.janeTalking;
+
+    if (this.janeTalking) {
+      chatInput.style.visibility = 'hidden';
+    } else {
+      chatInput.style.removeProperty('visibility');
+      chatInput.focus();
+    }
+  }
+
+  private async newJaneMessage(text: string, ignoreToggle = false) {
+    if (!ignoreToggle) {
+      this.toggleJaneTalking();
+    }
+
+    const newMessage: Message = { user: false, text };
+
+    this.history.push(newMessage);
+    this.updateHistory(newMessage);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    if (!ignoreToggle) {
+      this.toggleJaneTalking();
+    }
+  }
+
+  async newUserMessage(text: string) {
     const newMessage: Message = { user: true, text };
 
     this.history.push(newMessage);
     this.updateHistory(newMessage);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     for (const info of BIO_INFO) {
       if (info.label.toLowerCase() === text.toLowerCase()) {
+        this.newJaneMessage('Here is what I know about ' + text.toLowerCase());
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         this.hideChat();
         this.nodeCloud.focusNode(text, () => this.showInfo(info));
         break;
@@ -52,6 +115,7 @@ export class Chat {
     )!.style.display = 'none';
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'flex';
+    document.querySelector<HTMLDivElement>('.chat-input')!.focus();
   }
 
   private updateHistory(message: Message) {
@@ -61,7 +125,7 @@ export class Chat {
 
     if (message.user) {
       messageClass = 'user-message';
-      messenger = 'User';
+      messenger = 'Me';
     } else {
       messageClass = 'ai-message';
       messenger = 'Jane';
