@@ -33,7 +33,7 @@ userInput.addEventListener('keydown', (event) => {
 });
 
 const resumeButton = document.querySelector<HTMLButtonElement>('.resume')!;
-resumeButton.addEventListener('click', () => chat.showChat());
+resumeButton.addEventListener('click', () => chat.resume());
 
 function animate() {
   nodeCloud.moveNodes();

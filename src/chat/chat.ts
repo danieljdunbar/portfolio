@@ -107,12 +107,15 @@ export class Chat {
       'none';
   }
 
-  showChat() {
-    this.nodeCloud.resume();
-
+  resume() {
     document.querySelector<HTMLButtonElement>(
       '.info-container'
     )!.style.display = 'none';
+
+    this.nodeCloud.resume(() => this.showChat());
+  }
+
+  private showChat() {
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'flex';
     document.querySelector<HTMLDivElement>('.chat-input')!.focus();

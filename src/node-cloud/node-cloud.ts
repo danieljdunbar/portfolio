@@ -250,7 +250,7 @@ export class NodeCloud {
       .start();
   }
 
-  resume() {
+  resume(completeCallback: () => void) {
     if (this.paused) {
       new TWEEN.Tween(this.controls.target)
         .to({ x: 0, y: 0, z: 0 }, 1000)
@@ -265,6 +265,7 @@ export class NodeCloud {
             .onUpdate(() => {
               this.camera.lookAt(0, 0, 0);
             })
+            .onComplete(completeCallback)
             .start();
         })
         .start();
