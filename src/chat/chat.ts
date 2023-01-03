@@ -119,6 +119,7 @@ export class Chat {
     document.querySelector<HTMLDivElement>('.chat-container')!.style.display =
       'flex';
     document.querySelector<HTMLDivElement>('.chat-input')!.focus();
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   private updateHistory(message: Message) {

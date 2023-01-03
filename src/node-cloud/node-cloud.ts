@@ -76,6 +76,7 @@ export class NodeCloud {
     this.camera.position.z = INITIAL_CAMERA_POSITION.z;
     this.camera.position.y = INITIAL_CAMERA_POSITION.y;
     this.controls.maxDistance = 1000;
+    this.controls.update();
 
     this.scene.add(this.group);
     this.group.add(this.linesMesh);
