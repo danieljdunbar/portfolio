@@ -20,6 +20,7 @@ const SEGMENTS = NODE_COUNT * NODE_COUNT;
 const RADIUS = 400;
 const LINE_VERTICES = new Float32Array(SEGMENTS * 3);
 const INITIAL_CAMERA_POSITION = { x: 0, y: 0, z: 800 };
+const INITIAL_BOX_POSITION = { x: 0, y: 200, z: 0 };
 
 export class NodeCloud {
   renderer: THREE.WebGLRenderer;
@@ -74,12 +75,12 @@ export class NodeCloud {
     document.getElementById('bg')!.appendChild(this.labelRenderer.domElement);
 
     this.camera.position.z = INITIAL_CAMERA_POSITION.z;
-    this.camera.position.y = INITIAL_CAMERA_POSITION.y;
     this.controls.maxDistance = 1000;
     this.controls.update();
 
     this.scene.add(this.group);
     this.group.add(this.linesMesh);
+    this.group.position.y = INITIAL_BOX_POSITION.y;
 
     this.createNodeCloud();
 
@@ -229,17 +230,32 @@ export class NodeCloud {
       (info) => info.label.toLowerCase() === text.toLowerCase()
     );
     const node = this.nodes[nodeIndex];
-    const nodePosition = node.object.position;
+    const nodePosition = new THREE.Vector3(
+      node.object.position.x,
+      node.object.position.y + this.group.position.y,
+      node.object.position.z
+    );
 
     new TWEEN.Tween(this.controls.target)
-      .to(nodePosition, 1000)
+      .to(
+        {
+          x: nodePosition.x,
+          y: nodePosition.y,
+          z: nodePosition.z,
+        },
+        1000
+      )
       .onUpdate(() => {
         this.controls.update();
       })
       .onComplete(() => {
         new TWEEN.Tween(this.camera.position)
           .to(
-            { x: nodePosition.x, y: nodePosition.y, z: nodePosition.z + 100 },
+            {
+              x: nodePosition.x,
+              y: nodePosition.y + INITIAL_BOX_POSITION.y,
+              z: nodePosition.z + 100,
+            },
             2000
           )
           .onUpdate(() => {

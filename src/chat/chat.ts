@@ -25,19 +25,31 @@ export class Chat {
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
     this.newJaneMessage(
-      'I am an AI named Jane here to help you learn about Daniel',
+      'I am a bot named Jane here to help you learn about Daniel',
       true
     );
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
     this.newJaneMessage(
-      "You can of course chat with me or you can type in one of the subjects floating around in his information cloud and I'll show you what I know about him",
+      'Tilt the box to view the information cloud from different angles',
+      true
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    this.newJaneMessage(
+      "You can type in one of the subjects floating around in there and I'll show you what I know about him",
       true
     );
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
     this.newJaneMessage(
-      'Try typing work, education, skills, or my personal favorite dog',
+      'For example you can try typing "work", "education", "skills", or my personal favorite "dog"',
+      true
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    this.newJaneMessage(
+      'Or you can just chat with me if you would like :)',
       true
     );
 
