@@ -19,71 +19,41 @@ export class Chat {
   }
 
   private async janeIntro() {
-    this.toggleJaneTalking();
-
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    this.newJaneMessage('Hello!', true);
+    this.newJaneMessage('Hello!');
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
     this.newJaneMessage(
-      'I am a bot named Jane here to help you learn about Daniel',
-      true
+      'I am a bot named Jane here to help you learn about Daniel'
     );
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
     this.newJaneMessage(
-      'Tilt the box to view the information cloud from different angles',
-      true
+      'Tilt the box to view the information cloud from different angles'
     );
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
     this.newJaneMessage(
-      "You can type in one of the subjects floating around in there and I'll show you what I know about him",
-      true
+      "You can type in one of the subjects floating around in there and I'll show you what I know about him"
     );
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
     this.newJaneMessage(
-      'For example you can try typing "work", "education", "skills", or my personal favorite "dog"',
-      true
+      'For example you can try typing "work", "education", "skills", or my personal favorite "dog"'
     );
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    this.newJaneMessage(
-      'Or you can just chat with me if you would like :)',
-      true
-    );
+    this.newJaneMessage('Or you can just chat with me if you would like :)');
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    this.toggleJaneTalking();
   }
 
-  private toggleJaneTalking() {
-    const chatInput = document.querySelector<HTMLDivElement>('.chat-input')!;
-    this.janeTalking = !this.janeTalking;
-
-    if (this.janeTalking) {
-      chatInput.style.visibility = 'hidden';
-    } else {
-      chatInput.style.removeProperty('visibility');
-      chatInput.focus();
-    }
-  }
-
-  private async newJaneMessage(text: string, ignoreToggle = false) {
-    if (!ignoreToggle) {
-      this.toggleJaneTalking();
-    }
-
+  private async newJaneMessage(text: string) {
     const newMessage: Message = { user: false, text };
 
     this.history.push(newMessage);
     this.updateHistory(newMessage);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    if (!ignoreToggle) {
-      this.toggleJaneTalking();
-    }
   }
 
   async newUserMessage(text: string) {
