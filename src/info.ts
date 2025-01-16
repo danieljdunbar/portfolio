@@ -133,11 +133,12 @@ export const BIO_INFO: Info[] = [
     `,
   },
   {
-    label: 'Piano',
+    label: 'Art',
     detailsHtml: `
         Daniel took lessons for a couple of years when he was 8 but then didn't pick it back up until he was 16. Couldn't 
         recall anything he was taught except for how to barely read sheet music but it was very very fun so he 
-        kept fiddling with it and likes writing music as a hobby.
+        kept fiddling with it and likes writing music as a hobby. He has also gotten really into making art through various mediums and is currently
+        exploring how his knowledge of coding can help create more interesting art pieces.
     `,
   },
   { label: 'Contact', detailsHtml: `
