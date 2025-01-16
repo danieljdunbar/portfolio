@@ -1,7 +1,7 @@
 import './chat.css';
 import { NodeCloud } from '../node-cloud';
 import { BIO_INFO, Info } from '../info';
-import { getAiResponse } from './getAiResponse';
+// import { getAiResponse } from './getAiResponse';
 
 interface Message {
   user: boolean;
