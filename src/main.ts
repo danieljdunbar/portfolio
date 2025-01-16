@@ -11,7 +11,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <div class="info-title"></div>
           <div class="info-details"></div>
         </div>
-        <button class="resume">Resume</button>
+        <button class="resume">Back</button>
       </div>
       <div class="chat-container">
         <div class="chat-history"></div>
@@ -27,7 +27,7 @@ const chat = new Chat(nodeCloud);
 const userInput = document.querySelector<HTMLInputElement>('.chat-input')!;
 userInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    chat.newUserMessage(userInput.value);
+    chat.newUserMessage(userInput.value.trim());
     userInput.value = '';
   }
 });

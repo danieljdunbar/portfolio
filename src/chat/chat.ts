@@ -42,8 +42,8 @@ export class Chat {
       'For example you can try typing "work", "education", "skills", or my personal favorite "dog"'
     );
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    this.newJaneMessage('Or you can just chat with me if you would like :)');
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    // this.newJaneMessage('Or you can just chat with me if you would like :)');
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
@@ -77,7 +77,9 @@ export class Chat {
     }
 
     if (!isInfoMessage) {
-      const aiResponse = await getAiResponse(text);
+      // const aiResponse = await getAiResponse(text);
+      const aiResponse = "Sorry, I didn't understand that! Try typing in the category you want to see again.";
+
       this.newJaneMessage(aiResponse);
     }
   }
@@ -119,7 +121,7 @@ export class Chat {
 
     if (message.user) {
       messageClass = 'user-message';
-      messenger = 'Me';
+      messenger = 'User';
     } else {
       messageClass = 'ai-message';
       messenger = 'Jane';

@@ -7,6 +7,16 @@ export const BIO_INFO: Info[] = [
   {
     label: 'Work',
     detailsHtml: `
+      <div>
+          Memora Health - Software Engineer
+          <ul>
+              <li>Fullstack engineer developing internal tools to allow our client specialist to build custom AI messaging programs for our customers.</li>
+              <li>Designed/implemented migration of major tools (tips and survey builder) from AngularJS to React/Typescript while improving on the user interface and usability.</li>
+              <li>Rebuilt how the backend sends/completes surveys to address scalability concerns and make the system more flexible/understandable for planned changes in the future.</li>
+              <li>Work with the UX team to define the UIs.</li>
+              <li>Investigate and fix scalability problems we were encountering as we gained more clients.</li>
+          </ul>
+      </div>
         <div>
             Healthymind - Founder
             <ul>
@@ -54,7 +64,7 @@ export const BIO_INFO: Info[] = [
     label: 'Skills',
     detailsHtml: `
       <div>
-        He can write hella code. Specifically he have notable experience with the following technologies:
+        He can write hella code. Specifically he has notable experience with the following technologies:
 
         <table>
           <tr>
@@ -103,10 +113,11 @@ export const BIO_INFO: Info[] = [
         </p>
     `,
   },
-  { label: 'Dog', detailsHtml: `Daniel has a dog. Here is a picture of him:` },
-  { label: 'Seattle', detailsHtml: `He lived there` },
-  { label: 'Youth', detailsHtml: `He was young once. Have some proof: ` },
-  { label: 'Pizza', detailsHtml: `The man goes feral for it` },
+  { label: 'Dog', detailsHtml: `Daniel has a dog. He is super cute and super anxious.` },
+  { label: 'Cities', detailsHtml: `Grew up in a small town called Sierra Vista, AZ. In college he spent time in Tucson, AZ and a house just outside of Columbia, SC. 
+                                    First job after college was in Seattle and then he moved to NYC for a few years. Discovered he loves it there and has plans to stay long term.` },
+  { label: 'Youth', detailsHtml: `He was young once. A curious boy. Became a curious man.` },
+  { label: 'Pizza', detailsHtml: `The man goes feral for it. Starts BARKING` },
   {
     label: 'Books',
     detailsHtml: `
@@ -129,5 +140,8 @@ export const BIO_INFO: Info[] = [
         kept fiddling with it and likes writing music as a hobby.
     `,
   },
-  { label: 'Contact', detailsHtml: `Github, LinkedIn, Instagram` },
+  { label: 'Contact', detailsHtml: `
+        <p>Email: dunbardanielj@gmail.com</p>
+        <p><a href="https://www.linkedin.com/in/danieljdunbar">LinkedIn</a></p>` 
+  },
 ];
